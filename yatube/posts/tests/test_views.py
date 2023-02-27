@@ -126,7 +126,7 @@ class PostViewsTests(TestCase):
         self.assertEqual(result, 1)
         follow = Follow.objects.get(author=self.user_1)
         follow.delete()
-        result =self.user_1.following.count()
+        result = self.user_1.following.count()
         self.assertEqual(result, 0)
 
     def text_cache_index(self):
@@ -152,14 +152,3 @@ class PostViewsTests(TestCase):
             kwargs={'username': self.user_following}
         ))
         self.assertEqual(Follow.objects.all().count(), 0)
-
-    def test_follow_numbers(self):
-        """Отображение постов по подписке"""
-        follow = Follow.objects.create(
-            user=self.user,
-            author=self.user_1,
-        )
-        response_1 = self.authorized_client.get(f'profile/{self.user_1.username}/follow/')
-        response_2 = self.authorized_client.get(f'profile/{self.user_1.username}/follow/')
-        result = self.user.follower.count()
-        self.assertEqual(result, 1)

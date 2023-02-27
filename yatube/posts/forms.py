@@ -12,6 +12,7 @@ class PostForm(forms.ModelForm):
             'group': 'Группа поста',
         }
 
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
