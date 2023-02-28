@@ -4,10 +4,13 @@
   {% include 'posts/includes/switcher.html' %}
   {% for post in page_obj %}
   {% include 'posts/includes/post_list.html' %}
-    {% if post.group %}   
+    {% if post.group %}
+    <article>
+      <p>{{ group.title }}</p>
       <a href="{% url 'posts:group_posts' post.group.slug %}">
         все записи группы
       </a>
+    </article>
     {% endif %}
     {% if not forloop.last %}<hr>{% endif %}
   {% endfor %}
